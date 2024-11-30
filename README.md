@@ -20,14 +20,13 @@ A huge thank you to everyone who contributed to making this project happen!
 - All the code in this repository is **open-sourced**.  
 - You are free to use, modify, and redistribute it in any project created after **November 30, 2024**, under the following conditions:  
   - **Attribution is appreciated but not required.**  
-  - Please share any improvements you make to the code to help others!  
+  - Please considering sharing any improvements you make to the code to help others!  
 
 ### Art and Music  
 The **art** and **music** remain the intellectual property of the respective artists and musicians in this group.  
 
 #### Open-source usage:  
-- These assets may be used in personal or commercial projects **with credit to the original creators**.  
-- Redistribution of assets is **not allowed** without written permission from the original creators.  
+- These assets may be used in personal or commercial projects **Attribution is appreciated but not required**. 
 - If you're unsure whether your intended use complies with these terms, please reach out!  
 
 ---
