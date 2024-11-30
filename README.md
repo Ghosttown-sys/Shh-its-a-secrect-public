@@ -1,4 +1,6 @@
-# [Game Off 2024](https://itch.io/jam/game-off-2024)
+# Jam Link : [Game Off 2024](https://itch.io/jam/game-off-2024)
+
+# Project Link : [Sh!!! Its a secret](https://revelab.itch.io/secret)
 
 This project was created as part of Game Off 2024. It is now open-sourced as of **November 30, 2024**.  
 We hope this repository inspires and helps others in their creative endeavors!
