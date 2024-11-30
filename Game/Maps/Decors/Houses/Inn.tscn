@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3aay2k5cj6on"]
+
+[ext_resource type="Texture2D" uid="uid://dhqb42rsmonnx" path="res://assets/Houses/inn.png" id="1_ah8ja"]
+
+[node name="Inn" type="Node2D"]
+z_index = 1
+
+[node name="JamHouse1" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(0, -1175)
+texture = ExtResource("1_ah8ja")

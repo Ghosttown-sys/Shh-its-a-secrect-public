@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dr5u017h0mtor"]
+
+[ext_resource type="Script" path="res://Game/Characters/Npcs/npc.gd" id="1_al877"]
+[ext_resource type="PackedScene" uid="uid://bippwyhnfd4lw" path="res://Game_Systems/World_Components/Interactable_Component/Interactable_Component.tscn" id="2_8lol0"]
+[ext_resource type="Resource" uid="uid://vqlr8k6bls2g" path="res://Global/Resources/Characters/Black_Smith.tres" id="2_rc8cs"]
+[ext_resource type="Resource" uid="uid://cmjyhtuh0a7gq" path="res://Game/Dialogues/Smith.dialogue" id="3_pdyu7"]
+
+[node name="Npc" type="StaticBody2D"]
+z_index = 10
+script = ExtResource("1_al877")
+npc_data = ExtResource("2_rc8cs")
+dialgoue_Res = ExtResource("3_pdyu7")
+
+[node name="sprite" type="Sprite2D" parent="."]
+z_index = -6
+position = Vector2(0, -400)
+
+[node name="Interactable_Component" parent="." instance=ExtResource("2_8lol0")]
+
+[node name="Name" type="Button" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = -169.0
+offset_top = -702.0
+offset_right = 169.0
+offset_bottom = -625.0
+theme_override_font_sizes/font_size = 50
+text = "lol"

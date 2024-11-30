@@ -1,0 +1,29 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://rm0nvo83k0w"]
+
+[ext_resource type="Texture2D" uid="uid://cgyc6d6l6dx1n" path="res://assets/Spritesheets/hexagon_sheet.png" id="1_146rb"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_13dfy"]
+texture = ExtResource("1_146rb")
+texture_region_size = Vector2i(868, 600)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+0:1/0/custom_data_0 = true
+1:1/0 = 0
+1:1/0/custom_data_0 = true
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+
+[resource]
+tile_shape = 3
+tile_layout = 5
+tile_size = Vector2i(868, 500)
+custom_data_layer_0/name = "walkable"
+custom_data_layer_0/type = 1
+custom_data_layer_1/name = "gate_timer"
+custom_data_layer_1/type = 2
+sources/4 = SubResource("TileSetAtlasSource_13dfy")

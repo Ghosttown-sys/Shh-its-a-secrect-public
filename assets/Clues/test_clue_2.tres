@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="ClueData" load_steps=2 format=3 uid="uid://dyhh02xvo0328"]
+
+[ext_resource type="Script" path="res://Global/Resources/clue_data.gd" id="1_ewgte"]
+
+[resource]
+script = ExtResource("1_ewgte")
+clue_text = "THE APPEL"

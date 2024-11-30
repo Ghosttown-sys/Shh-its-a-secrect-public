@@ -1,0 +1,29 @@
+~ start  
+
+do set_current_npc("elder")  
+do npc_active()  
+set can_talk_with_npc = "false"  
+
+Chief: Welcome Detective to our small town. As you already know, you’re here for the investigation into a murder case. 
+
+Chief: It’s been a difficult time for all of us, but I’m sure your expertise will help us get to the bottom of this. Let’s talk more tomorrow.  
+
+Chief: You must be exhausted after your long journey. Get some rest tonight, and we’ll continue the investigation in the morning.  
+
+~ choices  
+do detective_active()  
+
+Detective: 
+
+- Reread Conversation  
+	do npc_active()  
+	=> start
+
+- End Conversation  
+	do npc_active()  
+	Chief: Thank you for your time, Detective. Let’s reconvene tomorrow, and I’m sure we’ll get the answers we need.  
+
+	Chief: Take care, and get some rest. I’ll be here when you’re ready to continue.  
+
+	set can_talk_with_npc = "true"  
+	=> END

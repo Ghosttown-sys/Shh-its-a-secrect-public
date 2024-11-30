@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_13"
+type="Resource"
+uid="uid://g2uogci0nsvv"
+path="res://.godot/imported/Elder.dialogue-b1f9c7e9248ed7da7ff086534e77b098.tres"
+
+[deps]
+
+source_file="res://Game/Dialogues/Elder.dialogue"
+dest_files=["res://.godot/imported/Elder.dialogue-b1f9c7e9248ed7da7ff086534e77b098.tres"]
+
+[params]
+
+defaults=true

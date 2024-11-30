@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://3iwad2l2s8jk"]
+
+[ext_resource type="Script" path="res://Game/Clue_Book/clue_book.gd" id="1_w51km"]
+[ext_resource type="Script" path="res://Game/Clue_Book/label.gd" id="2_ci15l"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4m2uk"]
+font_size = 128
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2sgkx"]
+font_size = 512
+font_color = Color(0, 0, 0, 1)
+
+[node name="Clue_Book" type="CanvasLayer"]
+layer = 2
+script = ExtResource("1_w51km")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CenterContainer"]
+custom_minimum_size = Vector2(4900, 2900)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_4m2uk")
+script = ExtResource("2_ci15l")
+
+[node name="ColorRect" type="ColorRect" parent="CenterContainer"]
+custom_minimum_size = Vector2(5000, 3000)
+layout_mode = 2
+
+[node name="CenterContainer2" type="CenterContainer" parent="."]
+z_index = 1
+anchors_preset = -1
+anchor_top = 0.679
+anchor_right = 0.555
+anchor_bottom = 1.0
+offset_top = 0.719971
+offset_right = -0.399902
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="CenterContainer2"]
+visible = false
+layout_mode = 2
+text = "NEW CLUE!"
+label_settings = SubResource("LabelSettings_2sgkx")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]

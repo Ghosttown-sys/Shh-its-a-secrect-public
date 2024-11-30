@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://fym2ljv4tgln"]
+
+[ext_resource type="Texture2D" uid="uid://r5guc7get75v" path="res://assets/Houses/jam_house_1_recoloured.png" id="1_jir6c"]
+
+[node name="House" type="Node2D"]
+z_index = 8
+
+[node name="JamHouse1" type="Sprite2D" parent="."]
+position = Vector2(0, -1000)
+texture = ExtResource("1_jir6c")

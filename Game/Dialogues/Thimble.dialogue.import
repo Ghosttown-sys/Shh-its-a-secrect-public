@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_13"
+type="Resource"
+uid="uid://chf5ufnnvfyy8"
+path="res://.godot/imported/Thimble.dialogue-a6a754e26843b1fac892508ca612f3e8.tres"
+
+[deps]
+
+source_file="res://Game/Dialogues/Thimble.dialogue"
+dest_files=["res://.godot/imported/Thimble.dialogue-a6a754e26843b1fac892508ca612f3e8.tres"]
+
+[params]
+
+defaults=true

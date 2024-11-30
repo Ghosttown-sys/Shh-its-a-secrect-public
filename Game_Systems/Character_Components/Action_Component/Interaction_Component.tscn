@@ -1,0 +1,86 @@
+[gd_scene load_steps=4 format=3 uid="uid://56sfndyjxh02"]
+
+[ext_resource type="Texture2D" uid="uid://bf2ob2kgxqylj" path="res://assets/UI/arrow.png" id="1_5mpfu"]
+
+[sub_resource type="GDScript" id="GDScript_ecrpk"]
+script/source = "extends Marker2D
+
+@export var character_data : Player_Data
+@onready var label = $CanvasLayer/Label
+@onready var detection_zone: Area2D = %Detection_Zone
+@onready var arrow: Sprite2D = $CanvasLayer/Arrow
+
+func _input(_event):
+	if !character_data:
+		return
+		
+	if Input.is_action_just_pressed(\"interact\"):
+		interact()
+
+func interact():
+	if !character_data:
+		return
+		
+	var interactables = detection_zone.get_overlapping_areas()
+	if interactables.size() > 0:
+		interactables[0].interact()
+
+
+func _physics_process(_delta):
+	if !character_data:
+		return
+		
+	#rotation = character_data.direction.angle()
+	var interactables = detection_zone.get_overlapping_areas()
+	if interactables.size() > 0:
+		label.visible = true
+		arrow.visible = true
+		label.text =  interactables[0].label_text
+	else :
+		label.visible = false
+		arrow.visible = false
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ns1xc"]
+radius = 12.0
+
+[node name="Interaction_Component" type="Marker2D"]
+script = SubResource("GDScript_ecrpk")
+
+[node name="Detection_Zone" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 128
+collision_mask = 256
+collision_priority = 0.0
+
+[node name="Collider" type="CollisionShape2D" parent="Detection_Zone"]
+position = Vector2(6, 0)
+shape = SubResource("CircleShape2D_ns1xc")
+
+[node name="CanvasLayer" type="Control" parent="."]
+z_index = 4096
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -2223.0
+offset_top = -528.0
+offset_right = -690.0
+offset_bottom = -253.0
+grow_horizontal = 0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 50
+theme_override_font_sizes/font_size = 200
+text = "Press E to interact"
+
+[node name="Arrow" type="Sprite2D" parent="CanvasLayer"]
+visible = false
+position = Vector2(-404, -628)
+texture = ExtResource("1_5mpfu")

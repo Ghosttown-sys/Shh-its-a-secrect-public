@@ -1,0 +1,101 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0ic0pt73le1j"]
+
+[sub_resource type="GDScript" id="GDScript_6xypi"]
+script/source = "extends Camera2D
+
+#region Exported Variables
+@export var zoom_scale := Vector2(0.1, 0.1)
+@export var zoom_invert := false
+@export var min_zoom := 0.5
+@export var max_zoom := 1.5
+@export var limit_offset := 1
+@export var move_relative_to_zoom := false
+@export var camera_speed := 100
+#endregion
+
+#region Internal Variables
+var original_zoom: Vector2 = Vector2(1, 1)
+var target_zoom: Vector2
+var target_position: Vector2
+var relocating_camera: bool = false
+var relocate_speed: float = 5.0
+#endregion
+
+#region Initialization
+func _ready():
+	original_zoom = zoom
+#endregion
+
+#region Input Handling
+func _unhandled_input(event: InputEvent) -> void:
+	if relocating_camera:
+		return
+	zoom_handler(event)
+	drag_handler(event)
+
+func _input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed(\"r_click\"):
+		relocate_camera()
+#endregion
+
+#region Camera Update Logic
+func _process(delta):
+	if relocating_camera:
+		relocate(delta)
+	else:
+		keys_handler()
+#endregion
+
+#region Camera Control and Relocation
+func relocate_camera() -> void:
+	target_position = Vector2.ZERO
+	target_zoom = original_zoom
+	relocating_camera = true
+
+func relocate(delta: float) -> void:
+	position = position.lerp(target_position, relocate_speed * delta)
+	var relcoation_zoom = Vector2(1.0,1.0)
+	zoom = zoom.lerp(relcoation_zoom, relocate_speed * delta)
+	
+	if position.distance_to(target_position) <= 2.0 and zoom.distance_to(relcoation_zoom) <= 0.01:
+		position = target_position
+		zoom = relcoation_zoom
+		relocating_camera = false
+#endregion
+
+#region Camera Movement and Drag
+func drag_handler(event: InputEvent) -> void:
+	if event is InputEventMouseMotion and Input.is_action_pressed(\"drag_camera\"):
+		# Adjust the drag speed based on the zoom level
+		var zoom_factor = 1.0 / zoom.x  # Scale drag inversely to zoom level for consistency
+		var adjusted_move = event.relative * zoom_factor
+		position -= adjusted_move
+		position = Vector2(
+			clamp(position.x, limit_left + get_viewport_rect().size.x / 2, limit_right - get_viewport_rect().size.x / 2),
+			clamp(position.y, limit_top + get_viewport_rect().size.y / 2, limit_bottom - get_viewport_rect().size.y / 2)
+		)
+
+func keys_handler() -> void:
+	var direction = Vector2(Input.get_axis(\"to_left_camera\", \"to_right_camera\"), Input.get_axis(\"to_top_camera\", \"to_down_camera\"))
+	if direction != Vector2.ZERO:
+		var move_amount = direction.normalized() * camera_speed * (zoom * 0.8) if move_relative_to_zoom else direction.normalized() * camera_speed
+		position += move_amount
+		position = Vector2(
+			clamp(position.x, limit_left + get_viewport_rect().size.x / 2, limit_right - get_viewport_rect().size.x / 2),
+			clamp(position.y, limit_top + get_viewport_rect().size.y / 2, limit_bottom - get_viewport_rect().size.y / 2)
+		)
+#endregion
+
+#region Zoom Control
+func zoom_handler(event: InputEvent) -> void:
+	var plus = \"zoom_in\" if zoom_invert else \"zoom_out\"
+	var minus = \"zoom_out\" if zoom_invert else \"zoom_in\"
+	if event.is_action_pressed(plus) and (zoom.x < max_zoom):
+		zoom += zoom_scale
+	elif event.is_action_pressed(minus) and (zoom.x >= min_zoom):
+		zoom -= zoom_scale
+#endregion
+"
+
+[node name="Camera" type="Camera2D"]
+script = SubResource("GDScript_6xypi")

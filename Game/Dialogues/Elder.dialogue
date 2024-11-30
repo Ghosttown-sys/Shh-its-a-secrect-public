@@ -1,0 +1,56 @@
+~ start  
+
+do set_current_npc("elder")  
+do npc_active()  
+set can_talk_with_npc = "false"  
+
+Chief: Welcome detective, I’m glad you got to our little village so quickly. You’ll be staying at our inn while you’re here.  
+
+
+~ choices
+
+do detective_active()  
+
+Detective: 
+
+- Ask about Foxy
+	do detective_active()  
+	Detective: Can you describe Foxy for me? Is there anything unusual that stands out to you about her death? Do you know of anyone that might have had problems with her?  
+
+	do npc_active()  
+	Chief: Foxy was very cunning. She was our peddler. She would bring goods and supplies that we wouldn’t normally be able to get. Despite her travels, she had a permanent residence here.  
+
+	do npc_active()  
+	Chief: We all love Foxy here, I don’t know of anyone who would even think about hurting her. 
+	
+	=> choices
+
+- Ask about the Murder
+	do detective_active()  
+	Detective: Who was the one to discover Foxy's death? Was there anything unusual about it?
+	
+	do npc_active()
+	Chief: The garden triplets were the ones who found her. There were weird markings in her home. 
+	
+	Chief: I couldn't stomach it, so I don't have much for details. I'll let you investigate the house.
+	
+	do add_clue("- Foxy was found dead in her home by the garden triplets")
+	
+	do add_clue("- Strange markings were found in Foxy's Home")
+	
+	=> choices
+
+- Ask about the Villagers  
+	do detective_active()  
+	Detective: Can you tell me about the villagers that live here?  
+
+	do npc_active()  
+	Chief: Well, there’s Foxy who we’ve lost, Smith, Farmer, Baker, Thimble, and the triplets over at the garden, Sprout, Blossom, and Daisy. I’m sure they’ll all be willing to help with your investigation.  
+	
+	=> choices
+	
+- End Conversation  
+	do npc_active()  
+	Chief: Thank you Detective, I’ll do my best to resolve this so you can get your community back on its feet.  
+	set can_talk_with_npc = "true"  
+	=> END  

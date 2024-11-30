@@ -1,0 +1,97 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5cju3eif3m6y"]
+
+[ext_resource type="Texture2D" uid="uid://bf2ob2kgxqylj" path="res://assets/UI/arrow.png" id="2_e7c87"]
+[ext_resource type="PackedScene" uid="uid://caqdai2a40owv" path="res://Game/Dice/Dice.tscn" id="2_x5p6e"]
+
+[sub_resource type="GDScript" id="GDScript_dl2v1"]
+script/source = "extends Node2D
+
+@onready var dice: Node2D = %Dice
+@onready var dice_2: Node2D = %Dice2
+@onready var roll_dice: Button = $Roll_Dice
+
+var total_dice_value := 0
+var dices_rolled := 0
+
+
+func _ready() -> void:
+	
+	Events.new_turn.connect(_new_turn)
+	Events.roll_dice.connect(roll)
+	pass
+
+
+func roll() -> void:
+	total_dice_value = 0
+	
+	dice.roll()
+	await get_tree().create_timer(0.1).timeout
+	dice_2.roll()
+
+
+func dice_rolled(number: int) -> void:
+	total_dice_value += number
+	dices_rolled += 1
+	if dices_rolled ==2:
+		await get_tree().create_timer(0.5).timeout
+		Events.total_dice_rolled.emit(total_dice_value)
+		dices_rolled = 0
+		total_dice_value = 0
+
+func _new_turn():
+	roll_dice.disabled = false
+
+func _on_roll_dice_pressed() -> void:
+	roll_dice.disabled = true
+	await get_tree().create_timer(0.5).timeout
+	Events.roll_dice.emit()
+	
+	
+	
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_gikxm"]
+line_spacing = 5.0
+font_size = 150
+font_color = Color(0, 0, 0, 1)
+outline_size = 10
+
+[node name="Dice_Handlers" type="Node2D"]
+z_index = 5
+position = Vector2(6037, -5416)
+script = SubResource("GDScript_dl2v1")
+
+[node name="Dice" parent="." instance=ExtResource("2_x5p6e")]
+unique_name_in_owner = true
+position = Vector2(-242, 197)
+
+[node name="Dice2" parent="." instance=ExtResource("2_x5p6e")]
+unique_name_in_owner = true
+position = Vector2(246, 196)
+
+[node name="Roll_Dice" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -460.0
+offset_top = -256.0
+offset_right = 482.0
+offset_bottom = 255.0
+disabled = true
+flat = true
+
+[node name="Arrow" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-632, -392)
+texture = ExtResource("2_e7c87")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+z_index = 100
+offset_left = -1588.0
+offset_top = -207.0
+offset_right = -627.0
+text = "Left click to roll"
+label_settings = SubResource("LabelSettings_gikxm")
+
+[connection signal="dice_rolled" from="Dice" to="." method="dice_rolled"]
+[connection signal="dice_rolled" from="Dice2" to="." method="dice_rolled"]

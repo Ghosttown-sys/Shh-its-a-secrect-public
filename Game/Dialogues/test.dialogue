@@ -1,0 +1,12 @@
+~ start
+Guide: [[Hi|Hello|Howdy]], welcome to the quick guide!
+
+- Details about **Actions**
+	Guide: - test
+
+- Start again => start
+- End the conversation 
+	=> END
+
+Guide: just end !
+=> END

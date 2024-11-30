@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_13"
+type="Resource"
+uid="uid://cmjyhtuh0a7gq"
+path="res://.godot/imported/Smith.dialogue-c5a015b7475d17736824aab313cb0283.tres"
+
+[deps]
+
+source_file="res://Game/Dialogues/Smith.dialogue"
+dest_files=["res://.godot/imported/Smith.dialogue-c5a015b7475d17736824aab313cb0283.tres"]
+
+[params]
+
+defaults=true

@@ -1,0 +1,378 @@
+[gd_scene load_steps=25 format=3 uid="uid://3jvcux1e12oy"]
+
+[ext_resource type="Script" path="res://Game/Main_scene/Main_Scene.gd" id="1_556ik"]
+[ext_resource type="Resource" uid="uid://bp12hvncf7330" path="res://Game/Dialogues/Intro.dialogue" id="2_f0umc"]
+[ext_resource type="PackedScene" uid="uid://b67hlb2vmpobe" path="res://Game/Maps/Village_map.tscn" id="3_rsdrn"]
+[ext_resource type="PackedScene" uid="uid://dx2ddudopgexc" path="res://Game/Characters/Player_Units/unit.tscn" id="4_lfnj3"]
+[ext_resource type="PackedScene" uid="uid://b5cju3eif3m6y" path="res://Game_Systems/World_Components/Dice_Handler/dice_handlers.tscn" id="6_sq1re"]
+[ext_resource type="Texture2D" uid="uid://bypd0vnwcn61t" path="res://assets/UI/notebook.png" id="7_m6w6q"]
+[ext_resource type="Texture2D" uid="uid://c40gyahqsbnrx" path="res://assets/UI/scroll.png" id="7_nldt8"]
+[ext_resource type="Script" path="res://Game/Main_scene/ui.gd" id="7_scxxf"]
+[ext_resource type="Texture2D" uid="uid://b7dq34b5nhlum" path="res://assets/UI/die.png" id="8_5qo8n"]
+[ext_resource type="PackedScene" uid="uid://c0ic0pt73le1j" path="res://Game_Systems/Camera/Camera.tscn" id="8_to8lq"]
+[ext_resource type="Script" path="res://Game/Main_scene/bottom_ui_bar.gd" id="10_5uu65"]
+[ext_resource type="Texture2D" uid="uid://bybtgrxwde2il" path="res://assets/UI/button.png" id="10_p45k4"]
+[ext_resource type="Theme" uid="uid://deqtved3kspn4" path="res://assets/Data/Global_theme.tres" id="10_v8wae"]
+[ext_resource type="Texture2D" uid="uid://o8b7oh1impit" path="res://assets/UI/button_2.png" id="11_dewpi"]
+[ext_resource type="Texture2D" uid="uid://d2kiauhrwnr0c" path="res://assets/UI/hour_glass.png" id="12_ao767"]
+[ext_resource type="Texture2D" uid="uid://cn0jews3esr3i" path="res://assets/UI/shoe.png" id="13_njj1y"]
+[ext_resource type="Script" path="res://Game/Main_scene/wipe.gd" id="14_oise2"]
+[ext_resource type="PackedScene" uid="uid://c1l1i4u1im4y8" path="res://Game_Systems/Day_Night_System/day_night.tscn" id="14_w2pwu"]
+[ext_resource type="Shader" path="res://Game_Systems/transition_manager/diamonds_wipe.gdshader" id="19_ukvk7"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y81nt"]
+texture = ExtResource("7_m6w6q")
+texture_margin_left = 216.837
+texture_margin_top = 371.775
+texture_margin_right = 300.236
+texture_margin_bottom = 346.712
+region_rect = Rect2(12, 2, 1047, 1493)
+modulate_color = Color(0.61339, 0.61339, 0.61339, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1efgr"]
+texture = ExtResource("7_m6w6q")
+texture_margin_left = 216.837
+texture_margin_top = 371.775
+texture_margin_right = 300.236
+texture_margin_bottom = 346.712
+region_rect = Rect2(12, 2, 1047, 1493)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b8xgj"]
+texture = ExtResource("7_m6w6q")
+texture_margin_left = 216.837
+texture_margin_top = 371.775
+texture_margin_right = 300.236
+texture_margin_bottom = 346.712
+region_rect = Rect2(12, 2, 1047, 1493)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mb5jo"]
+font_size = 150
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1y8ya"]
+shader = ExtResource("19_ukvk7")
+shader_parameter/progress = 0.0
+shader_parameter/diamondPixelSize = 200.0
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_556ik")
+dialgoue_Res = ExtResource("2_f0umc")
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("7_scxxf")
+
+[node name="UI_Bar" type="MarginContainer" parent="UI"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 950)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 818.487
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/UI_Bar"]
+visible = false
+layout_mode = 2
+texture = ExtResource("7_nldt8")
+region_rect = Rect2(16, 12, 289, 142)
+patch_margin_left = 77
+patch_margin_top = 47
+patch_margin_right = 80
+patch_margin_bottom = 39
+
+[node name="Ui_Container" type="MarginContainer" parent="UI/UI_Bar"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+
+[node name="Clue_Book_Button" type="Button" parent="UI/UI_Bar/Ui_Container"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+tooltip_text = "clues"
+theme_override_styles/hover = SubResource("StyleBoxTexture_y81nt")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_1efgr")
+theme_override_styles/normal = SubResource("StyleBoxTexture_b8xgj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/UI_Bar"]
+layout_mode = 2
+
+[node name="Ui_Container2" type="MarginContainer" parent="UI/UI_Bar/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+
+[node name="Clue_Book_Button" type="TextureRect" parent="UI/UI_Bar/VBoxContainer/Ui_Container2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+tooltip_text = "clues"
+texture = ExtResource("10_p45k4")
+
+[node name="Control" type="TextureRect" parent="UI/UI_Bar/VBoxContainer/Ui_Container2/Clue_Book_Button"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 33.0
+offset_top = -193.0
+offset_right = 642.0
+offset_bottom = 407.0
+grow_vertical = 2
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("11_dewpi")
+
+[node name="Control2" type="TextureRect" parent="UI/UI_Bar/VBoxContainer/Ui_Container2/Clue_Book_Button/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_ao767")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/UI_Bar/VBoxContainer/Ui_Container2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 200
+
+[node name="label_day" type="Label" parent="UI/UI_Bar/VBoxContainer/Ui_Container2/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "BOB"
+label_settings = SubResource("LabelSettings_mb5jo")
+
+[node name="Ui_Container4" type="MarginContainer" parent="UI/UI_Bar/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+
+[node name="Clue_Book_Button" type="TextureRect" parent="UI/UI_Bar/VBoxContainer/Ui_Container4"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+tooltip_text = "clues"
+texture = ExtResource("10_p45k4")
+
+[node name="Control" type="TextureRect" parent="UI/UI_Bar/VBoxContainer/Ui_Container4/Clue_Book_Button"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 33.0
+offset_top = -193.0
+offset_right = 642.0
+offset_bottom = 407.0
+grow_vertical = 2
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("11_dewpi")
+
+[node name="Control2" type="TextureRect" parent="UI/UI_Bar/VBoxContainer/Ui_Container4/Clue_Book_Button/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_5qo8n")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/UI_Bar/VBoxContainer/Ui_Container4"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 200
+
+[node name="label_dice" type="Label" parent="UI/UI_Bar/VBoxContainer/Ui_Container4/MarginContainer"]
+layout_mode = 2
+text = "BOB"
+label_settings = SubResource("LabelSettings_mb5jo")
+
+[node name="Ui_Container3" type="MarginContainer" parent="UI/UI_Bar/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+
+[node name="Clue_Book_Button" type="TextureRect" parent="UI/UI_Bar/VBoxContainer/Ui_Container3"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+tooltip_text = "clues"
+texture = ExtResource("10_p45k4")
+
+[node name="Control" type="TextureRect" parent="UI/UI_Bar/VBoxContainer/Ui_Container3/Clue_Book_Button"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 33.0
+offset_top = -193.0
+offset_right = 642.0
+offset_bottom = 407.0
+grow_vertical = 2
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("11_dewpi")
+
+[node name="Control2" type="TextureRect" parent="UI/UI_Bar/VBoxContainer/Ui_Container3/Clue_Book_Button/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_njj1y")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/UI_Bar/VBoxContainer/Ui_Container3"]
+layout_mode = 2
+theme_override_constants/margin_left = 200
+
+[node name="label_steps" type="Label" parent="UI/UI_Bar/VBoxContainer/Ui_Container3/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "BOB"
+label_settings = SubResource("LabelSettings_mb5jo")
+
+[node name="Bottom_UI_Bar" type="MarginContainer" parent="UI"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 950)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+script = ExtResource("10_5uu65")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Bottom_UI_Bar"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Roll_Dice" type="Button" parent="UI/Bottom_UI_Bar/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("10_v8wae")
+theme_override_font_sizes/font_size = 200
+text = "ROLL DICE"
+
+[node name="New_day" type="Button" parent="UI/Bottom_UI_Bar/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("10_v8wae")
+theme_override_font_sizes/font_size = 200
+text = "START NEW DAY"
+
+[node name="Clue_Container" type="MarginContainer" parent="UI"]
+unique_name_in_owner = true
+visible = false
+offset_right = 1076.0
+offset_bottom = 711.0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Clue_UI" type="NinePatchRect" parent="UI/Clue_Container"]
+unique_name_in_owner = true
+layout_direction = 3
+layout_mode = 2
+texture = ExtResource("7_m6w6q")
+patch_margin_left = 410
+patch_margin_top = 216
+patch_margin_right = 566
+patch_margin_bottom = 395
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Clue_Container"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 200
+
+[node name="Clues" type="ScrollContainer" parent="UI/Clue_Container/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="Clue_list" type="VBoxContainer" parent="UI/Clue_Container/MarginContainer/Clues"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Close" type="Button" parent="UI/Clue_Container"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 250
+text = "X"
+
+[node name="Wipe" type="ColorRect" parent="UI"]
+material = SubResource("ShaderMaterial_1y8ya")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0475577, 0.0475576, 0.0475576, 1)
+script = ExtResource("14_oise2")
+
+[node name="Board_Map" parent="." instance=ExtResource("3_rsdrn")]
+unique_name_in_owner = true
+
+[node name="unit" parent="." instance=ExtResource("4_lfnj3")]
+position = Vector2(-822, -36)
+
+[node name="Dice_Handlers" parent="." instance=ExtResource("6_sq1re")]
+position = Vector2(6080, -5418)
+
+[node name="Camera" parent="." instance=ExtResource("8_to8lq")]
+zoom = Vector2(0.5, 0.5)
+zoom_scale = Vector2(0.05, 0.05)
+zoom_invert = true
+min_zoom = 0.35
+max_zoom = 2.0
+move_relative_to_zoom = true
+
+[node name="Day_Night" parent="." instance=ExtResource("14_w2pwu")]
+
+[connection signal="pressed" from="UI/UI_Bar/Ui_Container/Clue_Book_Button" to="UI" method="_on_clue_book_button_pressed"]
+[connection signal="pressed" from="UI/Bottom_UI_Bar/VBoxContainer/Roll_Dice" to="UI/Bottom_UI_Bar" method="_on_roll_dice_pressed"]
+[connection signal="pressed" from="UI/Bottom_UI_Bar/VBoxContainer/New_day" to="UI/Bottom_UI_Bar" method="_on_new_day_pressed"]
+[connection signal="pressed" from="UI/Clue_Container/Close" to="UI" method="_on_close_pressed"]

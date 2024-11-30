@@ -1,0 +1,106 @@
+[gd_resource type="TileSet" load_steps=29 format=3 uid="uid://bewls50eqqhms"]
+
+[ext_resource type="PackedScene" uid="uid://dcrjdhndrqowg" path="res://Game/Maps/Decors/tree1.tscn" id="1_6l0lo"]
+[ext_resource type="Texture2D" uid="uid://cgyc6d6l6dx1n" path="res://assets/Spritesheets/hexagon_sheet.png" id="1_7cmdk"]
+[ext_resource type="PackedScene" uid="uid://byalv7e56efq" path="res://Game/Maps/Decors/Bush.tscn" id="2_tcn4d"]
+[ext_resource type="PackedScene" uid="uid://dylr4xv8mk1ot" path="res://Game/Maps/Decors/tree.tscn" id="3_iwevd"]
+[ext_resource type="PackedScene" uid="uid://g62ip1na25rr" path="res://Game/Maps/Decors/garden.tscn" id="3_mjr0w"]
+[ext_resource type="PackedScene" uid="uid://c3aay2k5cj6on" path="res://Game/Maps/Decors/Houses/Inn.tscn" id="4_7xuwp"]
+[ext_resource type="PackedScene" uid="uid://bphes2i86xnng" path="res://Game/Maps/Decors/Houses/House.tscn" id="4_hx16j"]
+[ext_resource type="PackedScene" uid="uid://cw67ud5sb5ns1" path="res://Game/Maps/Decors/Farm.tscn" id="5_sfs2e"]
+[ext_resource type="PackedScene" uid="uid://fym2ljv4tgln" path="res://Game/Maps/Decors/Houses/House1.tscn" id="6_73ov1"]
+[ext_resource type="PackedScene" uid="uid://b7gp02ty5hf7o" path="res://Game/Maps/Decors/Houses/House2.tscn" id="7_fh5ns"]
+[ext_resource type="PackedScene" uid="uid://c07n8utgewtas" path="res://Game/Maps/Decors/Houses/House3.tscn" id="8_oy44v"]
+[ext_resource type="PackedScene" uid="uid://cwwvyuyhmf7rv" path="res://Game/Maps/Decors/Houses/House4.tscn" id="9_7q5pp"]
+[ext_resource type="PackedScene" uid="uid://d1w8x6n32x11a" path="res://Game/Maps/Decors/Houses/House5.tscn" id="10_njleb"]
+[ext_resource type="PackedScene" uid="uid://dr5u017h0mtor" path="res://Game/Characters/Npcs/black_smith.tscn" id="11_e37ti"]
+[ext_resource type="PackedScene" uid="uid://dinba3335600g" path="res://Game/Characters/Npcs/farmer_Cat.tscn" id="12_peuka"]
+[ext_resource type="PackedScene" uid="uid://d13x0xjr7yb20" path="res://Game/Characters/Npcs/gardener.tscn" id="13_bku1p"]
+[ext_resource type="PackedScene" uid="uid://cccdoffp0jbfm" path="res://Game/Characters/Npcs/Thimble.tscn" id="14_b7e8d"]
+[ext_resource type="PackedScene" uid="uid://ca64ysg3rg303" path="res://Game/Characters/Npcs/village_elder.tscn" id="16_k2l66"]
+[ext_resource type="PackedScene" uid="uid://cnxwggnyeav2q" path="res://Game/Characters/Npcs/Baker.tscn" id="17_6hnja"]
+[ext_resource type="PackedScene" uid="uid://1rx3333c3r75" path="res://Game/Characters/Npcs/Crime_Scene.tscn" id="18_1c2io"]
+[ext_resource type="PackedScene" uid="uid://cwukucbvq8li5" path="res://Game/Characters/Npcs/Triplets.tscn" id="18_lhsjc"]
+[ext_resource type="PackedScene" uid="uid://cgganmn8dig4g" path="res://Game/Characters/Npcs/sheep2.tscn" id="20_blt0j"]
+[ext_resource type="PackedScene" uid="uid://b6y314k1xbyur" path="res://Game/Characters/Npcs/sheep3.tscn" id="21_tduek"]
+[ext_resource type="PackedScene" uid="uid://bydsvohu6tyid" path="res://Game/Maps/Fog/Fog.tscn" id="25_aokke"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_imlgl"]
+resource_name = "Decors"
+scenes/1/scene = ExtResource("1_6l0lo")
+scenes/2/scene = ExtResource("3_iwevd")
+scenes/3/scene = ExtResource("4_hx16j")
+scenes/4/scene = ExtResource("5_sfs2e")
+scenes/5/scene = ExtResource("6_73ov1")
+scenes/6/scene = ExtResource("7_fh5ns")
+scenes/7/scene = ExtResource("8_oy44v")
+scenes/8/scene = ExtResource("9_7q5pp")
+scenes/9/scene = ExtResource("10_njleb")
+scenes/10/scene = ExtResource("2_tcn4d")
+scenes/11/scene = ExtResource("3_mjr0w")
+scenes/12/scene = ExtResource("4_7xuwp")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_03mep"]
+resource_name = "NPC"
+scenes/1/scene = ExtResource("11_e37ti")
+scenes/2/scene = ExtResource("12_peuka")
+scenes/3/scene = ExtResource("13_bku1p")
+scenes/4/scene = ExtResource("18_lhsjc")
+scenes/5/scene = ExtResource("17_6hnja")
+scenes/6/scene = ExtResource("18_1c2io")
+scenes/8/scene = ExtResource("20_blt0j")
+scenes/9/scene = ExtResource("21_tduek")
+scenes/10/scene = ExtResource("14_b7e8d")
+scenes/11/scene = ExtResource("16_k2l66")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bdqkr"]
+texture = ExtResource("1_7cmdk")
+texture_region_size = Vector2i(868, 600)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -50)
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, -50)
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, -50)
+3:0/0 = 0
+3:0/0/texture_origin = Vector2i(0, -50)
+0:1/0 = 0
+0:1/0/texture_origin = Vector2i(0, -50)
+0:1/0/custom_data_0 = true
+1:1/0 = 0
+1:1/0/texture_origin = Vector2i(0, -50)
+1:1/0/custom_data_0 = true
+2:1/0 = 0
+2:1/0/texture_origin = Vector2i(0, -50)
+3:1/0 = 0
+3:1/0/texture_origin = Vector2i(0, -50)
+0:2/0 = 0
+0:2/0/texture_origin = Vector2i(0, -50)
+1:2/0 = 0
+1:2/0/texture_origin = Vector2i(0, -50)
+2:2/0 = 0
+2:2/0/texture_origin = Vector2i(0, -50)
+2:2/0/custom_data_0 = true
+3:2/0 = 0
+3:2/0/texture_origin = Vector2i(0, -50)
+0:3/0 = 0
+0:3/0/texture_origin = Vector2i(0, -49)
+1:3/0 = 0
+1:3/0/texture_origin = Vector2i(0, -49)
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_y2dwo"]
+resource_name = "Fog"
+scenes/1/scene = ExtResource("25_aokke")
+
+[resource]
+tile_shape = 3
+tile_layout = 5
+tile_size = Vector2i(868, 500)
+custom_data_layer_0/name = "walkable"
+custom_data_layer_0/type = 1
+custom_data_layer_1/name = "gate_timer"
+custom_data_layer_1/type = 2
+sources/4 = SubResource("TileSetAtlasSource_bdqkr")
+sources/0 = SubResource("TileSetScenesCollectionSource_imlgl")
+sources/1 = SubResource("TileSetScenesCollectionSource_03mep")
+sources/6 = SubResource("TileSetScenesCollectionSource_y2dwo")

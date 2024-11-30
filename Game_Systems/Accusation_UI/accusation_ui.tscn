@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxle0qmlwe3mc"]
+
+[ext_resource type="Script" path="res://Game_Systems/Accusation_UI/accusation_ui.gd" id="1_cyt5m"]
+
+[node name="AccusationUi" type="CanvasLayer"]
+script = ExtResource("1_cyt5m")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0

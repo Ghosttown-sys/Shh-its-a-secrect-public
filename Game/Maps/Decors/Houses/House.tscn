@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bphes2i86xnng"]
+
+[node name="House" type="Node2D"]
+z_index = 8
+
+[node name="JamHouse1" type="Sprite2D" parent="."]
+position = Vector2(0, -1000)

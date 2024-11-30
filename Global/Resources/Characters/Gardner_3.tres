@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Character" load_steps=3 format=3 uid="uid://cr0u47e52ds4j"]
+
+[ext_resource type="Script" path="res://Global/Resources/character_data.gd" id="1_f5n4h"]
+[ext_resource type="Texture2D" uid="uid://b7fas53hxfksn" path="res://assets/Art/farmer_cat_blackout.png" id="2_5kowr"]
+
+[resource]
+script = ExtResource("1_f5n4h")
+npc_name = "Daisy"
+profession = "Garden_Care_Taker"
+sprite = ExtResource("2_5kowr")
+details = ""

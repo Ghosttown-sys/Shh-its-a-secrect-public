@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_13"
+type="Resource"
+uid="uid://c1p6weeoco0jy"
+path="res://.godot/imported/Triplets.dialogue-2e3183e81d71678ceb3cc2604a37d98b.tres"
+
+[deps]
+
+source_file="res://Game/Dialogues/Triplets.dialogue"
+dest_files=["res://.godot/imported/Triplets.dialogue-2e3183e81d71678ceb3cc2604a37d98b.tres"]
+
+[params]
+
+defaults=true

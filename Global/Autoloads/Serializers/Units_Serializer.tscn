@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://chxeltownrcd8"]
+
+[ext_resource type="Script" path="res://Global/Autoloads/Serializers/Units_Serializer.gd" id="1_rjwgi"]
+
+[node name="Units_Serializer" type="Node"]
+script = ExtResource("1_rjwgi")

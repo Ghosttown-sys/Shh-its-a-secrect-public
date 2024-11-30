@@ -1,0 +1,52 @@
+~ start  
+
+set can_talk_with_npc = "false"  
+
+do detective_active()  
+*Knock Knock Knock*
+
+... ...
+
+do set_current_npc("TAILOR")  
+do npc_active()  
+
+Thimble: HELLO!! 
+
+Thimble: Wh-who are you?
+
+do detective_active()  
+Detective: I’m a detective. Chief asked me to come investigate the murder of Foxy. Did you know her well?
+
+do npc_active()  
+Thimble: She was my best friend, and now she's g-gone
+
+~ Choices
+do detective_active() 
+
+Detective: 
+
+- Ask about Foxy
+	do detective_active()  
+	Detective: Have you noticed anyone having problems with Foxy? Is there anyone who might have wanted to hurt her?
+	
+	do npc_active()  
+	Thimble: I think maybe someone got in a fight with her about some of the stuff she brought to the village. 
+	
+	do detective_active()
+	Detective: What sort of stuff did she bring to the village?
+	
+	do npc_active()  
+	Thimble: Foxy brought a bunch of creepy books and magical trinkets a while ago. 
+	
+	Thimble: Please find out who killed Foxy Detective
+	
+	do add_clue("- Foxy brought strange items to the village that have people worried")
+	
+	=> Choices
+
+- End Conversation
+
+	Detective: Thanks for your help Thimble. I can assure you there will be justice for Foxy.
+
+set can_talk_with_npc = "true"  
+=> END

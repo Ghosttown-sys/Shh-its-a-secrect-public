@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Character" load_steps=3 format=3 uid="uid://vqlr8k6bls2g"]
+
+[ext_resource type="Script" path="res://Global/Resources/character_data.gd" id="1_bly7u"]
+[ext_resource type="Texture2D" uid="uid://b7fas53hxfksn" path="res://assets/Art/farmer_cat_blackout.png" id="2_xyjh6"]
+
+[resource]
+script = ExtResource("1_bly7u")
+npc_name = "Smith"
+profession = "Blacksmith"
+sprite = ExtResource("2_xyjh6")
+details = ""

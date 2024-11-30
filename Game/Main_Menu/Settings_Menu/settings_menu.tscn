@@ -1,0 +1,147 @@
+[gd_scene load_steps=10 format=3 uid="uid://mxtnlppp8p32"]
+
+[ext_resource type="Script" path="res://Game/Main_Menu/Settings_Menu/master_volume_slider.gd" id="2_euby5"]
+[ext_resource type="Script" path="res://Game/Main_Menu/Settings_Menu/music_volume_slider.gd" id="3_bpd1j"]
+[ext_resource type="Script" path="res://Game/Main_Menu/Settings_Menu/effects_volume_slider.gd" id="4_yjskq"]
+[ext_resource type="Script" path="res://Game/Main_Menu/Settings_Menu/main_menu_button.gd" id="5_f42e2"]
+[ext_resource type="Script" path="res://Game/Main_Menu/Settings_Menu/ok_button.gd" id="7_g4mev"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3iwf4"]
+font_color = Color(0.486275, 0.521569, 0.803922, 1)
+shadow_size = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_op645"]
+font_color = Color(0.486275, 0.521569, 0.803922, 1)
+shadow_size = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_ekwp1"]
+font_color = Color(0.486275, 0.521569, 0.803922, 1)
+shadow_size = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_2npxp"]
+font_color = Color(0.486275, 0.521569, 0.803922, 1)
+shadow_size = 0
+
+[node name="SettingsMenu" type="CanvasLayer"]
+layer = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.392157, 0.427451, 0.556863, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect"]
+layout_mode = 0
+offset_left = 2941.0
+offset_top = 1616.0
+offset_right = 3145.0
+offset_bottom = 1639.0
+scale = Vector2(4, 4)
+
+[node name="Label" type="Label" parent="ColorRect/HBoxContainer"]
+custom_minimum_size = Vector2(72, 0)
+layout_mode = 2
+text = "MASTER"
+label_settings = SubResource("LabelSettings_3iwf4")
+
+[node name="CenterContainer" type="CenterContainer" parent="ColorRect/HBoxContainer"]
+layout_mode = 2
+
+[node name="MasterVolumeSlider" type="HSlider" parent="ColorRect/HBoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+script = ExtResource("2_euby5")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ColorRect"]
+layout_mode = 0
+offset_left = 2749.0
+offset_top = 1711.0
+offset_right = 2953.0
+offset_bottom = 1734.0
+scale = Vector2(4, 4)
+
+[node name="Label2" type="Label" parent="ColorRect/HBoxContainer2"]
+custom_minimum_size = Vector2(72, 0)
+layout_mode = 2
+text = "MUSIC"
+label_settings = SubResource("LabelSettings_op645")
+
+[node name="CenterContainer" type="CenterContainer" parent="ColorRect/HBoxContainer2"]
+layout_mode = 2
+
+[node name="MusicVolumeSlider2" type="HSlider" parent="ColorRect/HBoxContainer2/CenterContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+script = ExtResource("3_bpd1j")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="ColorRect"]
+layout_mode = 0
+offset_left = 2865.0
+offset_top = 1823.0
+offset_right = 3069.0
+offset_bottom = 1846.0
+scale = Vector2(4, 4)
+
+[node name="Label3" type="Label" parent="ColorRect/HBoxContainer3"]
+custom_minimum_size = Vector2(72, 0)
+layout_mode = 2
+text = "EFFECTS"
+label_settings = SubResource("LabelSettings_ekwp1")
+
+[node name="CenterContainer" type="CenterContainer" parent="ColorRect/HBoxContainer3"]
+layout_mode = 2
+
+[node name="EffectsVolumeSlider" type="HSlider" parent="ColorRect/HBoxContainer3/CenterContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+script = ExtResource("4_yjskq")
+
+[node name="CenterContainer2" type="CenterContainer" parent="ColorRect"]
+layout_mode = 0
+offset_left = 2782.0
+offset_top = 1488.0
+offset_right = 2849.0
+offset_bottom = 1511.0
+scale = Vector2(4, 4)
+
+[node name="Label" type="Label" parent="ColorRect/CenterContainer2"]
+layout_mode = 2
+text = "VOLUME"
+label_settings = SubResource("LabelSettings_2npxp")
+
+[node name="MainMenuButton" type="Button" parent="ColorRect"]
+layout_mode = 2
+offset_left = 36.0
+offset_top = 1039.0
+offset_right = 44.0
+offset_bottom = 1076.0
+scale = Vector2(8, 8)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "MAIN MENU"
+script = ExtResource("5_f42e2")
+
+[node name="OkButton" type="Button" parent="ColorRect"]
+layout_mode = 2
+offset_left = 1875.0
+offset_top = 1040.0
+offset_right = 1916.0
+offset_bottom = 1076.0
+scale = Vector2(8, 8)
+text = "OK"
+script = ExtResource("7_g4mev")
+
+[connection signal="value_changed" from="ColorRect/HBoxContainer/CenterContainer/MasterVolumeSlider" to="ColorRect/HBoxContainer/CenterContainer/MasterVolumeSlider" method="_on_value_changed"]
+[connection signal="value_changed" from="ColorRect/HBoxContainer2/CenterContainer/MusicVolumeSlider2" to="ColorRect/HBoxContainer2/CenterContainer/MusicVolumeSlider2" method="_on_value_changed"]
+[connection signal="value_changed" from="ColorRect/HBoxContainer3/CenterContainer/EffectsVolumeSlider" to="ColorRect/HBoxContainer3/CenterContainer/EffectsVolumeSlider" method="_on_value_changed"]
+[connection signal="button_up" from="ColorRect/MainMenuButton" to="ColorRect/MainMenuButton" method="_on_button_up"]
+[connection signal="button_up" from="ColorRect/OkButton" to="ColorRect/OkButton" method="_on_button_up"]

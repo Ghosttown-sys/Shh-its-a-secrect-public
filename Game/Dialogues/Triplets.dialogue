@@ -1,0 +1,65 @@
+~ start  
+
+do set_current_npc("Triplets")  
+do npc_active()  
+set can_talk_with_npc = "false"  
+
+Sprout: Are you the detctive? We've been waiting for you!
+
+do detective_active()  
+Detective: Why yes I am. Who do I have the pleasure of speaking to?
+
+do npc_active() 
+Sprout: I'm Sprout
+
+Blossom: I'm Blossom
+
+Daisy: And I'm Daisy 
+
+do detective_active()  
+Detective: Well it's nice to meet you all. You wouldn't mind if I asked you all a few questions?
+
+do npc_active() 
+Blossom: Ask away!
+
+~ Choices
+do detective_active() 
+
+Detective: 
+
+- Ask about Foxy
+	do detective_active()  
+	Detective: How did you know Foxy? Is there unusual that's happened with Foxy that you can think of?
+
+	do npc_active()  
+	Daisy: We've always traded our vegetables with Foxy. We had a bad drought a while ago and Foxy wasn't able to get what she needed from us.
+	
+	Daisy: I think Thimble was upset that Foxy couldn't get her the right threads for her new dress.
+	
+	do add_clue("- There was a serious drought not too long ago in the village")
+	
+	do add_clue("- Foxy couldn't get Thimble the right threads for her dress")
+	
+	=> Choices
+
+
+#This needs the clue from Chief in order to be unlocked
+- Ask about the Murder
+	do detective_active()  
+	Detective: I understand that you were all the first to discover Foxy's death. How did that happen?
+	
+	Blossom: We on our way to bring Foxy some fresh vegetables early in the morning. We got worried when we saw the broken window and she wasn't answering
+	
+	Blossom: My poor heart when we went inside and saw her cold body on the floor. And there was some wicked drawing on the floor beneath her.
+	
+	do add_clue("- Strange markings were found in Foxy's Home")
+	
+	=> Choices
+
+
+- End Conversation
+
+	Detective: Thanks for your help, I'll let you know if I have anymore questions.
+
+set can_talk_with_npc = "true"  
+=> END

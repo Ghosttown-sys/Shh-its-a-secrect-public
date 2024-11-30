@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6y314k1xbyur"]
+
+[ext_resource type="Script" path="res://Game/Characters/Npcs/npc.gd" id="1_icmy4"]
+[ext_resource type="Resource" uid="uid://cr0u47e52ds4j" path="res://Global/Resources/Characters/Gardner_3.tres" id="2_s7xck"]
+[ext_resource type="PackedScene" uid="uid://bippwyhnfd4lw" path="res://Game_Systems/World_Components/Interactable_Component/Interactable_Component.tscn" id="3_bu1yl"]
+[ext_resource type="Resource" uid="uid://c1p6weeoco0jy" path="res://Game/Dialogues/Triplets.dialogue" id="3_se3fi"]
+
+[node name="Npc" type="StaticBody2D"]
+z_index = 10
+script = ExtResource("1_icmy4")
+npc_data = ExtResource("2_s7xck")
+dialgoue_Res = ExtResource("3_se3fi")
+
+[node name="sprite" type="Sprite2D" parent="."]
+z_index = -6
+position = Vector2(0, -400)
+
+[node name="Interactable_Component" parent="." instance=ExtResource("3_bu1yl")]
+
+[node name="Name" type="Button" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = -169.0
+offset_top = -702.0
+offset_right = 169.0
+offset_bottom = -625.0
+theme_override_font_sizes/font_size = 50
+text = "lol"

@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_13"
+type="Resource"
+uid="uid://7b3a41kbo26k"
+path="res://.godot/imported/baker.dialogue-f8627f778f9d00edd840fc1c7985232d.tres"
+
+[deps]
+
+source_file="res://Game/Dialogues/baker.dialogue"
+dest_files=["res://.godot/imported/baker.dialogue-f8627f778f9d00edd840fc1c7985232d.tres"]
+
+[params]
+
+defaults=true

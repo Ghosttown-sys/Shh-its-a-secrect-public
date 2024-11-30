@@ -1,0 +1,37 @@
+~ start  
+
+do set_current_npc("baker")  
+do npc_active()  
+set can_talk_with_npc = "false"  
+
+Barker: Hello! You must be the detective. I’m Baker, nice to meet you.
+
+do detective_active()  
+Detective: Nice to meet you as well. That bread looks lovely.
+
+Detective: I’d like to ask you some questions about Foxy if that’s alright.
+
+~ Choices
+do detective_active() 
+
+Detective: 
+
+- Ask about Foxy
+	do detective_active()  
+	Detective: How did you know Foxy? Is there anything that stands out to your prior to her death?
+
+	do npc_active()  
+	Barker: Foxy and I traded for spices. She had those strange books and trinkets. There's no place in this village for that stuff. 
+	
+	Barker: Maybe Thimble did something with em. I don't quite like her. Farmer's a bit thick in the head, he might have believed in that magic nonsense. I've not seen that tool before. 
+
+	do add_clue("Foxy brought strange items to the village that have people worried")
+
+	=> Choices
+
+- End Conversation
+
+	Detective: Thanks for your help Baker.
+
+set can_talk_with_npc = "true"  
+=> END

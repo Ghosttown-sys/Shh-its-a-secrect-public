@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://t03ewyobn27w"]
+
+[ext_resource type="Script" path="res://Game_Systems/Accusation_UI/accusation_button.gd" id="1_kacso"]
+
+[node name="AccusationButton" type="TextureButton"]
+script = ExtResource("1_kacso")
+npc_name = "FOXY"
+
+[connection signal="button_up" from="." to="." method="_on_button_up"]

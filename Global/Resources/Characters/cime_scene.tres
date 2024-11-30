@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Character" load_steps=3 format=3 uid="uid://bav4lfrr86hhm"]
+
+[ext_resource type="Script" path="res://Global/Resources/character_data.gd" id="1_ucf2l"]
+[ext_resource type="Texture2D" uid="uid://b7fas53hxfksn" path="res://assets/Art/farmer_cat_blackout.png" id="2_8vf1c"]
+
+[resource]
+script = ExtResource("1_ucf2l")
+npc_name = "Crime Scene"
+profession = "Crime Scene"
+sprite = ExtResource("2_8vf1c")
+details = ""

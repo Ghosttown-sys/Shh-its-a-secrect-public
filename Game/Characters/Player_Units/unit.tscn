@@ -1,0 +1,204 @@
+[gd_scene load_steps=5 format=3 uid="uid://dx2ddudopgexc"]
+
+[ext_resource type="PackedScene" uid="uid://dxschfv10xhuy" path="res://Game_Systems/Character_Components/Visual_Component/visual_component.tscn" id="1_h6not"]
+[ext_resource type="PackedScene" uid="uid://56sfndyjxh02" path="res://Game_Systems/Character_Components/Action_Component/Interaction_Component.tscn" id="3_h0uv5"]
+
+[sub_resource type="GDScript" id="GDScript_shqk5"]
+script/source = "extends CharacterBody2D
+
+
+##region Exported Variables
+#@export_category(\"Movement\")
+#@export var Turn_Manager.move_points := 3
+#@export var Turn_Manager.day_number := 0
+#@export var Turn_Manager.dice_rolls_left := 3
+
+@export_group(\"DEBUG ONLY\")
+@export var outline_shader : ShaderMaterial
+
+@export_category(\"Player_details\")
+@export var player_data : Player_Data
+#endregion
+
+#region Node References and Variables
+@onready var map = %Board_Map
+@onready var visual_component: Node2D = $Visual_Component
+@onready var interaction_component: Marker2D = $Interaction_Component
+
+var unit_id : int
+var unit_v2i : Vector2i
+var path : Array
+var target_position
+var line : Line2D = Line2D.new()
+var is_selected = false
+var old_mouse_pos
+var speed = 600.0
+#endregion
+
+#region Signals and Callbacks
+func _on_map_clicked(cell_id):
+	if Turn_Manager.is_moving:
+		return
+	
+	if is_selected and Units_Serializer.selected_unit == unit_id and map.cells[unit_v2i].id != cell_id:
+		var local_path = map.generate_path(map.cells[unit_v2i].id, cell_id)
+		if local_path != [] and local_path.size() <= Turn_Manager.move_points + 1:
+			path = local_path
+
+#endregion
+
+#region Physics and Movement Logic
+func _physics_process(_delta):
+	if Turn_Manager.is_moving:
+		map.clear_fog(global_position, 1600.0)
+	move()
+	if is_selected and Units_Serializer.selected_unit == unit_id:
+		if map.cells.has(map.mouse_pos) and old_mouse_pos != map.mouse_pos:
+			if map.cells[map.mouse_pos].unit == -1:
+				var local_path = map.generate_path(map.cells[unit_v2i].id, map.cells[map.mouse_pos].id)
+				path_draw(local_path)
+			else:
+				line.clear_points()
+			old_mouse_pos = map.mouse_pos
+#endregion
+
+#region Initialization
+func _ready():
+	Events.turn_data_changed.emit(Turn_Manager.move_points, Turn_Manager.day_number, Turn_Manager.dice_rolls_left)
+	
+	Events.total_dice_rolled.connect(_dice_has_been_rolled)
+	line.width = 50
+	player_data = Player_Data.new()
+	visual_component.player_data = player_data
+	interaction_component.character_data = player_data
+	
+	Events.set_player_data.emit(player_data)
+	
+	map.add_child(line)
+	line.z_index = 2
+	map.clicked.connect(_on_map_clicked)
+	unit_v2i = map.local_to_map(global_position)
+	map.cells[unit_v2i].unit = unit_id
+	map.aStar.set_point_weight_scale(map.cells[unit_v2i].id, 1000)
+#endregion
+
+#region Movement Functions
+func _dice_has_been_rolled(number : int):
+	
+	Units_Serializer.selected_unit = unit_id
+
+	await get_tree().create_timer(0.8).timeout
+	is_selected = true
+	map._set_higlight_moves(unit_v2i, Turn_Manager.move_points)
+	
+	pass
+
+func move():
+	if path.is_empty():
+		end_movement()
+		return
+	
+	if not Turn_Manager.is_moving:
+		start_moving_to_next_target()
+	
+	map._clear_higlight_moves()
+	path_draw(path)
+	move_to(target_position)
+	
+	if global_position.distance_to(target_position) < speed * get_physics_process_delta_time():
+		on_reach_target()
+		
+		if Turn_Manager.is_moving:
+			Turn_Manager.consume_move_point()
+		
+		if not path.is_empty():
+			start_moving_to_next_target()
+		else:
+			finalize_movement()
+
+func start_moving_to_next_target():
+	target_position = map.map_to_local(path.front())
+	Turn_Manager.is_moving = true
+
+func on_reach_target():
+	path.pop_front()
+	update_unit_position()
+
+func update_unit_position():
+	map.cells[unit_v2i].unit = -1
+	map.aStar.set_point_weight_scale(map.cells[unit_v2i].id, 1)
+	unit_v2i = map.local_to_map(global_position)
+	map.cells[unit_v2i].unit = unit_id
+	map.aStar.set_point_weight_scale(map.cells[unit_v2i].id, 1000)
+
+
+
+func finalize_movement():
+	end_movement()
+	line.clear_points()
+	if Turn_Manager.move_points > 0:
+		is_selected = true
+		map._set_higlight_moves(unit_v2i, Turn_Manager.move_points)
+	handle_event_tile()
+
+
+# Checks if player stopped on an event tile
+func handle_event_tile():
+	var current_tile = map.event_layer.get_cell_scene(unit_v2i)
+	print(\"stopped at \", unit_v2i, \" | standing on \", current_tile)
+	if current_tile is EventTile:
+		current_tile.call_deferred(\"trigger_event\")
+
+
+func end_movement():
+	player_data.current_state = Player_Data.Current_State.IDLE
+
+func move_to(_position: Vector2):
+	var direction = (_position - global_position).normalized()
+	player_data.direction = direction
+	velocity = direction * speed
+	move_and_slide()
+	
+	if global_position.distance_to(_position) < speed * get_physics_process_delta_time():
+		velocity = Vector2.ZERO
+
+#endregion
+
+#region Path Drawing
+func path_draw(path_to_draw: PackedVector2Array):
+	if Turn_Manager.is_moving:
+		return
+	
+	line.clear_points()
+	if Turn_Manager.move_points <= 0:
+		return
+	
+	if path_to_draw.size() > Turn_Manager.move_points + 1:
+		line.default_color = Color(1, 0, 0, 0.7)
+	else:
+		line.default_color = Color(0, 0, 0, 0.7)
+	
+	line.add_point(global_position)
+	
+	for point in path_to_draw:
+		line.add_point(map.map_to_local(point))
+
+#endregion
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5nsey"]
+size = Vector2(126, 126)
+
+[node name="unit" type="CharacterBody2D" groups=["units"]]
+z_index = 5
+script = SubResource("GDScript_shqk5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, -187)
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_5nsey")
+
+[node name="Visual_Component" parent="." instance=ExtResource("1_h6not")]
+position = Vector2(-11, -160)
+
+[node name="Interaction_Component" parent="." instance=ExtResource("3_h0uv5")]

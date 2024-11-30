@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1l1i4u1im4y8"]
+
+[ext_resource type="Script" path="res://Game_Systems/Day_Night_System/day_night.gd" id="1_xkypp"]
+[ext_resource type="Texture2D" uid="uid://clpp778ew35h7" path="res://Game_Systems/Day_Night_System/day_night2.tres" id="2_v2im1"]
+[ext_resource type="Texture2D" uid="uid://2pp7qtjogtvs" path="res://assets/UI/Frame.png" id="3_jn81s"]
+[ext_resource type="Texture2D" uid="uid://fwd2qyx7j3n5" path="res://assets/UI/DayNightWheel.png" id="4_q65ya"]
+
+[node name="Day_Night" type="CanvasModulate"]
+script = ExtResource("1_xkypp")
+day_night_gradiant = ExtResource("2_v2im1")
+
+[node name="DayNightUI" type="CanvasLayer" parent="."]
+
+[node name="DayNightWheelFrame" type="TextureRect" parent="DayNightUI"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -400.0
+offset_right = 500.0
+offset_bottom = 100.0
+grow_vertical = 0
+scale = Vector2(2, 2)
+size_flags_horizontal = 0
+size_flags_vertical = 8
+texture = ExtResource("3_jn81s")
+stretch_mode = 4
+
+[node name="DayNightWheel" type="TextureRect" parent="DayNightUI/DayNightWheelFrame"]
+unique_name_in_owner = true
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -516.0
+offset_right = 500.0
+offset_bottom = -16.0
+grow_vertical = 0
+pivot_offset = Vector2(250, 250)
+size_flags_horizontal = 0
+size_flags_vertical = 8
+texture = ExtResource("4_q65ya")
+stretch_mode = 4
+
+[node name="TimeLabel" type="Label" parent="DayNightUI"]
+offset_left = 366.0
+offset_top = 3711.0
+offset_right = 661.0
+offset_bottom = 3918.0
+text = "TIME"

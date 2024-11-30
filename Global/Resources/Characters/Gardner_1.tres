@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Character" load_steps=3 format=3 uid="uid://df5w61stkbae0"]
+
+[ext_resource type="Script" path="res://Global/Resources/character_data.gd" id="1_ej6s2"]
+[ext_resource type="Texture2D" uid="uid://b7fas53hxfksn" path="res://assets/Art/farmer_cat_blackout.png" id="2_07ajw"]
+
+[resource]
+script = ExtResource("1_ej6s2")
+npc_name = "Sprout"
+profession = "Gardner"
+sprite = ExtResource("2_07ajw")
+details = ""

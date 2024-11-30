@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://c07n8utgewtas"]
+
+[ext_resource type="Texture2D" uid="uid://b6na8chcd1xf3" path="res://assets/Houses/jam_house_6.png" id="1_3tb6e"]
+
+[node name="House" type="Node2D"]
+z_index = 8
+
+[node name="JamHouse1" type="Sprite2D" parent="."]
+position = Vector2(0, -1000)
+texture = ExtResource("1_3tb6e")
+
+[node name="Anvil" type="Sprite2D" parent="JamHouse1"]
+position = Vector2(-451, 456)
+scale = Vector2(1.21166, 1.21166)

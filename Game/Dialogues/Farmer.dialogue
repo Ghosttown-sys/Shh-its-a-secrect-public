@@ -1,0 +1,47 @@
+~ start  
+
+do set_current_npc("Farmer")  
+do npc_active()  
+set can_talk_with_npc = "false"  
+
+Farmer: Hello there. Are you the detective? I'm Farmer, it's nice to meet you.
+
+do detective_active()  
+Detective: Nice to meet you as well. 
+
+Detective: I’d like to ask you some questions about Foxy if that’s alright.
+
+~ Choices
+do detective_active() 
+
+Detective: 
+
+- Ask about Foxy
+	do detective_active()  
+	Detective: How did you know Foxy? Did you notice anything strange about her before what happened?
+
+	do npc_active()  
+	Farmer: I traded my wheat with Foxy. She was really good to me.
+	
+	Farmer: I can't think of anything strange about her before what happened.
+	=> Choices
+
+- Ask about the village
+	do detective_active()  
+	Detective: Has there been any strange activity in the village?
+
+	do npc_active()  
+	Farmer: Yes, there has been some strange activity with the weather. 
+	
+	Farmer: Last harvest was bad. There was a serious drought and my crops were dying. It will be different this time though."
+	
+	do add_clue("- There was a serious drought not too long ago in the village")
+	
+	=> Choices
+
+- End Conversation
+
+	Detective: Thanks for your help Farmer.
+
+set can_talk_with_npc = "true"  
+=> END

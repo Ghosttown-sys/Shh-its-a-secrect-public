@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bydsvohu6tyid"]
+
+[ext_resource type="Texture2D" uid="uid://c4m8g4t63nolw" path="res://assets/Spritesheets/fog.png" id="1_rgff2"]
+[ext_resource type="Script" path="res://Game/Maps/Fog/fog.gd" id="2_kuij7"]
+
+[node name="Fog" type="Sprite2D"]
+self_modulate = Color(1, 1, 1, 0.882353)
+z_index = 100
+position = Vector2(-24, -356)
+texture = ExtResource("1_rgff2")
+script = ExtResource("2_kuij7")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0.192157, 0.109804, 0.329412, 0.509804)
+show_behind_parent = true
+z_index = -2
+position = Vector2(24.38, 352.54)
+texture = ExtResource("1_rgff2")

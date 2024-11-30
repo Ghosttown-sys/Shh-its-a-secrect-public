@@ -1,0 +1,38 @@
+~ start  
+
+do set_current_npc("BLACK_SMITH")  
+do npc_active()  
+set can_talk_with_npc = "false"  
+
+Smith: Heller There. Who are you and how can I help you?
+
+do detective_active()  
+Detective: I'm a detective. Chief asked me to come help investigate the tragedy that happend a few days ago.
+
+do npc_active()  
+Smith: Well welcome to our village. I'm Smith. I'll be glad to answer any questions you have.
+
+~ Choices
+do detective_active() 
+
+Detective: 
+
+- Ask about the village
+	do detective_active()  
+	Detective: Have you noticed anything unusual or out of place in the village lately?
+
+	do npc_active()  
+	Smith: No, I haven't seen much unordinary other then what happened with Foxy.
+	
+	Smith: Although, I haven't seen Thimble around in quite a while. She still needs to fix my forge apron.
+	
+	do add_clue("- Thimble has not been seen in a while")
+
+	=> Choices
+
+- End Conversation
+
+	Detective: Thanks for your help Smith.
+
+set can_talk_with_npc = "true"  
+=> END
